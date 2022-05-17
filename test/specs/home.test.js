@@ -1,10 +1,18 @@
 const homePage = require('../pageobjects/home.page');
 
-describe('First test file',async()=>{
+describe('Homepage tests',async()=>{
 
-    it('print displayed temperature',async()=>{
+    it('verify homepage title',async()=>{
 
         await browser.url('/');
-        (await homePage.selectItem('sunscreens')).click();
+        const actualTitle = (await homePage.pageTitle).getText();
+        await expect(actualTitle).toBe('Current temperature');
+    });
+
+    it('verify homepage displays temperature',async()=>{
+
+        await browser.url('/');
+        const actualTemp = (await homePage.temperature).getText();
+        await expect(actualTemp).not.toBeNull();
     })
 })

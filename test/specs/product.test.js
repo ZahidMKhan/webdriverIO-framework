@@ -5,10 +5,12 @@ describe('product page tests', async()=>{
 
     it('print all product names',async()=>{
         await browser.url('/');
-        (await homePage.selectItem('sunscreens')).click();
-        let names = await productPage.productNames;
-        for(let e of names){
-            console.log(await e.getText());
-        }
+
+        (await homePage.selectItem('moisturizer')).click();
+        
+        console.log(await productPage.getMatchingProducts('aloe'));
+
+        await browser.pause(3000)
+    
     })
 })
